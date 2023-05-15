@@ -11,6 +11,7 @@ const Container = styled.View`
   shadow-offset: 0px 2px;
   shadow-opacity: 0.25;
   shadow-radius: 3.84px;
+  elevation:4
 `;
 const MainDetailsView = styled.View`
   display:flex;

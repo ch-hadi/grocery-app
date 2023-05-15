@@ -2,12 +2,15 @@ import React from 'react';
 import { View, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import logo from '../../assets/logo.png'
+import { useNavigation } from '@react-navigation/native';
 const NavBar = () => {
+  const navigation = useNavigation();
   const handleCartPress = () => {
     // Handle cart icon press
   };
 
   const handleMenuPress = () => {
+   navigation.navigate('Like')
     // Handle menu icon press
   };
 
@@ -42,7 +45,7 @@ const styles = StyleSheet.create({
   logo: {
     width: 120,
     height: 120,
-    // resizeMode: 'cover',
+    resizeMode: 'cover',
   },
   icon: {
     width: 24,

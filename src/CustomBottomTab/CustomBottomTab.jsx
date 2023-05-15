@@ -75,7 +75,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
 
 export default function CustomBottomTab() {
   return (
-    <NavigationContainer>
+    <View style={{flex:1}}>
       <Tab.Navigator
       screenOptions={{ headerShown: false }}
       tabBar={props => <CustomTabBar {...props} />}
@@ -86,7 +86,7 @@ export default function CustomBottomTab() {
       <Tab.Screen name="Like" component={LikeScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
-    </NavigationContainer>
+    </View>
   );
 }
 

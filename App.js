@@ -1,17 +1,18 @@
 import React,{useState,useEffect} from 'react';
-import { View } from 'react-native';
+import { View,Text } from 'react-native';
 import CustomBottomTab from './src/CustomBottomTab/CustomBottomTab';
 import NavBar from './src/NavBar/NavBar';
-import LoginScreen from './src/Screens/LoginScreen';
-import SignupScreen from './src/Screens/SignUpScreen';
-import AnimatedBottomTab from './src/AnimatedBottomTab/AnimatedBottomTab'
+import { NavigationContainer } from '@react-navigation/native';
+import HorizontalItemList from './src/component/HorizontalItemList/HorizontalItemList';
+import HorizontalFlatList from './src/component/HorizontalItemList/ListItem';
 export default function App() {
 
   useEffect(()=>{
     // localStorage.setItem('tk','zubaidaRiaz')
   },[])
   return (
-    <View style={{flex:1,backgroundColor:'transparent'}}>
+   <NavigationContainer>
+     <View style={{flex:1,backgroundColor:'transparent'}}>
       <View style={{marginTop:'10%'}}>
         <NavBar/>
       </View>
@@ -19,5 +20,6 @@ export default function App() {
       {/* <LoginScreen/>
      <SignupScreen/> */}
     </View>
+   </NavigationContainer>
   );
 }
