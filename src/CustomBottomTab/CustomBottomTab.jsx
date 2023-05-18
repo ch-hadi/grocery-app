@@ -7,12 +7,13 @@ import ProfileScreen from '../Screens/ProfileScreen';
 import HomeScreen from '../Screens/HomeScreen';
 import SettingsScreen from '../Screens/SettingsScreen'
 import LikeScreen from '../Screens/LikeScreen';
+import { useSelector } from 'react-redux';
 
 const Tab = createBottomTabNavigator();
 
 function CustomTabBar({ state, descriptors, navigation }) {
   const [activeTab, setActiveTab] = useState(0);
-  return (
+    return (
     <View style={styles.tabBar}>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
@@ -70,19 +71,20 @@ function CustomTabBar({ state, descriptors, navigation }) {
         );
       })}
     </View>
-  );
+  ); 
 }
 
 export default function CustomBottomTab() {
+  
   return (
     <View style={{flex:1}}>
       <Tab.Navigator
       screenOptions={{ headerShown: false }}
-      tabBar={props => <CustomTabBar {...props} />}
-    >
+      tabBar={props => <CustomTabBar {...props} />
+    }
+      >
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
-      {/* <Tab.Screen name="Settings" component={SettingsScreen} /> */}
       <Tab.Screen name="Like" component={LikeScreen} />
       <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>

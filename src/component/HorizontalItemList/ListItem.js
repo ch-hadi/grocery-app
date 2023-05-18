@@ -1,19 +1,15 @@
-import React, { useRef } from 'react';
-import { View, FlatList, StyleSheet, Text, TouchableOpacity } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
-
-const HorizontalFlatList = () => {
-  const data = [
-    { id: '1', title: 'Item 1' },
-    { id: '2', title: 'Item 2' },
-    { id: '3', title: 'Item 3' },
-    { id: '4', title: 'Item 4' },
-    { id: '5', title: 'Item 5' },
-    { id: '6', title: 'Item 6' },
-    { id: '7', title: 'Item 7' },
-    { id: '8', title: 'Item 8' },
-  ];
-
+import React, { useRef, useState } from "react";
+import {
+  View,
+  FlatList,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+} from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
+import Ionicons from "react-native-vector-icons/Ionicons";
+const HorizontalFlatList = ({ data }) => {
+  const [active, setActive] = useState(0);
   const flatListRef = useRef(null);
 
   const handleScrollLeft = () => {
@@ -28,13 +24,23 @@ const HorizontalFlatList = () => {
     }
   };
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item, index }) => {
     return (
-      <View style={styles.item}>
-        <Text style={styles.title}>{item.title}</Text>
-      </View>
+      <TouchableOpacity
+        style={[
+          styles.item,
+          { 
+            backgroundColor: active == index ? "red" : "pink",        
+        },
+        ]}
+        onPress={() => setActive(index)}
+      >
+        <Text style={[styles.title,{color:index==active? 'white':'black'}]}>{active == index ? item : "ico"}</Text>
+      </TouchableOpacity>
     );
   };
+
+  console.log(active);
 
   return (
     <View style={styles.container}>
@@ -46,7 +52,7 @@ const HorizontalFlatList = () => {
         data={data}
         horizontal
         showsHorizontalScrollIndicator={false}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item}
         renderItem={renderItem}
         contentContainerStyle={styles.listContent}
       />
@@ -59,24 +65,26 @@ const HorizontalFlatList = () => {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   listContent: {
     paddingHorizontal: 0,
   },
   item: {
-    width: 50,
+    width: 90,
     height: 30,
+    overflow: "hidden",
     borderRadius: 8,
-    backgroundColor: 'lightblue',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // backgroundColor: 'lightblue',
+    justifyContent: "center",
+    alignItems: "center",
     marginRight: 10,
+    padding: 2,
   },
   title: {
-    fontSize: 16,
-    fontWeight: 'bold',
+    fontSize: 12,
+    fontWeight: "bold",
   },
   scrollButton: {
     paddingHorizontal: 10,
